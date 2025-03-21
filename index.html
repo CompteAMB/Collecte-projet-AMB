@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collecte de Dons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .progress-container {
+      width: 80%;
+      margin: 20px auto;
+      background: #eee;
+      border-radius: 25px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 30px;
+      background-color: #4caf50;
+      width: 0%;
+      line-height: 30px;
+      color: white;
+      transition: width 0.5s;
+    }
+    .banderole {
+      margin-top: 30px;
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+    }
+    .progress-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: darkgreen;
+      margin-top: 10px;
+    }
+    .justified-text {
+      width: 80%;
+      margin: 20px auto;
+      text-align: justify;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Collecte de Dons</h1>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar">0%</div>
+  </div>
+
+  <p id="progressText" class="progress-text">Chargement des données...</p>
+
+  <!-- Banderole image -->
+  <img src="banderole.jpg" alt="Illustration du projet" class="banderole">
+
+  <!-- Texte justifié extrait d'un fichier TXT -->
+  <p id="description" class="justified-text">Chargement du texte...</p>
+
+  <script>
+    async function fetchData() {
+      try {
+        const response = await fetch("donnees.json"); // Chemin local ou GitHub Pages
+        const data = await response.json();
+
+        const dons = data.dons;
+        const objectif = data.objectif;
+        const total = Math.round(dons.reduce((sum, d) => sum + d.DON, 0));
+        const formattedTotal = total.toLocaleString("fr-FR");
+        const formattedObjectif = objectif.toLocaleString("fr-FR");
+        const pourcentage = Math.min(100, (total / objectif) * 100).toFixed(1);
+
+        const bar = document.getElementById("progressBar");
+        bar.style.width = pourcentage + "%";
+        bar.textContent = pourcentage + "%";
+
+        document.getElementById("progressText").textContent =
+          formattedTotal + " € collectés sur " + formattedObjectif + " €";
+      } catch (error) {
+        document.getElementById("progressText").textContent = "Erreur de chargement des données.";
+        console.error("Erreur de chargement JSON :", error);
+      }
+    }
+
+    async function fetchText() {
+      try {
+        const response = await fetch("description.txt"); // Fichier TXT stocké sur GitHub
+        const text = await response.text();
+        document.getElementById("description").textContent = text;
+      } catch (error) {
+        document.getElementById("description").textContent = "Erreur de chargement du texte.";
+        console.error("Erreur de chargement du fichier TXT :", error);
+      }
+    }
+
+    fetchData();
+    fetchText();
+  </script>
+
+</body>
+</html>
