@@ -44,10 +44,14 @@
       white-space: pre-line;
     }
     .refresh-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
+      margin-top: 10px;
+      padding: 6px 12px;
+      font-size: 14px;
       cursor: pointer;
+      background-color: #e8f5e9;
+      border: 1px solid #4caf50;
+      color: #2e7d32;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -61,14 +65,14 @@
 
   <p id="progressText" class="progress-text">Chargement des données...</p>
 
+  <!-- Bouton de rafraîchissement sous le montant -->
+  <button class="refresh-button" onclick="window.location.reload(true)">🔄 Rafraîchir</button>
+
   <!-- Banderole image -->
   <img src="banderole.jpg" alt="Illustration du projet" class="banderole">
 
   <!-- Texte justifié extrait d'un fichier TXT -->
   <p id="description" class="justified-text">Chargement du texte...</p>
-
-  <!-- Bouton de rafraîchissement -->
-  <button class="refresh-button" onclick="window.location.reload(true)">🔄 Rafraîchir la page</button>
 
   <script>
     async function fetchData() {
