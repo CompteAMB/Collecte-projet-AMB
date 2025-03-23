@@ -5,12 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title id="pageTitle">Projet</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       font-family: Arial, sans-serif;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      box-sizing: border-box;
+      text-align: center;
     }
     .progress-container {
       width: 80%;
@@ -38,19 +43,17 @@
       font-weight: bold;
       color: darkgreen;
       margin-top: 10px;
-      text-align: center;
     }
     .justified-text {
       width: 80%;
       margin: 20px auto;
       text-align: justify;
-      font-size: 18px;
       white-space: pre-line;
+      font-size: 18px;
     }
     .refresh-container {
       margin-top: 10px;
       margin-bottom: 20px;
-      text-align: center;
     }
     .refresh-button {
       padding: 6px 12px;
