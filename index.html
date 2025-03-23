@@ -69,21 +69,18 @@
 
   <p id="progressText" class="progress-text">Chargement des données...</p>
 
-  <!-- Bouton de rafraîchissement sous le montant -->
   <div class="refresh-container">
     <button class="refresh-button" onclick="window.location.reload(true)">🔄 Rafraîchir</button>
   </div>
 
-  <!-- Banderole image -->
   <img src="banderole.jpg" alt="Illustration du projet" class="banderole">
 
-  <!-- Texte justifié extrait d'un fichier TXT -->
   <div class="justified-text" id="description">Chargement du texte...</div>
 
   <script>
     async function fetchData() {
       try {
-        const response = await fetch("donnees.json?" + new Date().getTime()); // Anti-cache
+        const response = await fetch("donnees.json?" + new Date().getTime());
         const data = await response.json();
 
         const dons = data.dons;
@@ -107,7 +104,7 @@
 
     async function fetchText() {
       try {
-        const response = await fetch("description.txt?" + new Date().getTime()); // Anti-cache
+        const response = await fetch("description.txt?" + new Date().getTime());
         const text = await response.text();
         document.getElementById("description").textContent = text;
       } catch (error) {
@@ -118,7 +115,7 @@
 
     async function fetchTitle() {
       try {
-        const response = await fetch("titre.txt?" + new Date().getTime()); // Anti-cache
+        const response = await fetch("titre.txt?" + new Date().getTime());
         const titleText = await response.text();
         document.getElementById("mainTitle").textContent = titleText.trim();
       } catch (error) {
