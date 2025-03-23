@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Participez au projet final de la mosquée</title>
+  <title id="pageTitle">Projet</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -60,7 +60,7 @@
 </head>
 <body>
 
-  <h1>Collecte de Dons</h1>
+  <h1 id="mainTitle">Collecte de Dons</h1>
 
   <div class="progress-container">
     <div class="progress-bar" id="progressBar">0%</div>
@@ -115,8 +115,19 @@
       }
     }
 
+    async function fetchTitle() {
+      try {
+        const response = await fetch("titre.txt?" + new Date().getTime()); // Anti-cache
+        const titleText = await response.text();
+        document.getElementById("mainTitle").textContent = titleText.trim();
+      } catch (error) {
+        console.error("Erreur de chargement du titre :", error);
+      }
+    }
+
     fetchData();
     fetchText();
+    fetchTitle();
   </script>
 
 </body>
